@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMZY Solutions - Mobile App Development Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        @keyframes slideInUp {from {opacity:0;transform:translateY(30px);} to {opacity:1;transform:translateY(0);} }
+        @keyframes slideInDown {from {opacity:0;transform:translateY(-30px);} to {opacity:1;transform:translateY(0);} }
+        @keyframes float {0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+        @keyframes shimmer {0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+        @keyframes float3d {0%,100%{transform:perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0)}25%{transform:perspective(1200px) rotateX(3deg) rotateY(-3deg) translateY(-6px)}50%{transform:perspective(1200px) rotateX(0deg) rotateY(4deg) translateY(-10px)}75%{transform:perspective(1200px) rotateX(-3deg) rotateY(-2deg) translateY(-6px)}}
+        @keyframes hero3d {0%,100%{transform:perspective(1400px) rotateX(0deg)}50%{transform:perspective(1400px) rotateX(2deg)}}
+        @keyframes bgOrbit {0%{transform:translate(-50%,-50%) rotate(0deg)}100%{transform:translate(-50%,-50%) rotate(360deg)}}
+        @keyframes deepFloat {0%,100%{transform:perspective(1600px) rotateX(0deg) rotateY(0deg) translateZ(0)}25%{transform:perspective(1600px) rotateX(6deg) rotateY(-6deg) translateZ(20px)}50%{transform:perspective(1600px) rotateX(-4deg) rotateY(8deg) translateZ(35px)}75%{transform:perspective(1600px) rotateX(5deg) rotateY(-4deg) translateZ(15px)}}
+        @keyframes cardPulse3d {0%,100%{transform:translateZ(0) scale(1)}50%{transform:translateZ(25px) scale(1.015)}}
+        @keyframes neonGlow {0%,100%{box-shadow:0 0 20px rgba(0,82,204,.15)}50%{box-shadow:0 0 40px rgba(0,82,204,.35)}}
+        :root {
+            --primary:#0052CC; --accent:#FFFFFF; --light-bg:#F5F7FB; --dark-gray:#1A1A1A; --text-gray:#666666; --border-color:#E8EAED;
+        }
+        html { scroll-behavior:smooth; }
+        body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif; color:var(--dark-gray); background:#FFFFFF; line-height:1.6; perspective:1400px; overflow-x:hidden; }
+        body::before{content:'';position:fixed;top:50%;left:50%;width:1400px;height:1400px;background:radial-gradient(circle,rgba(0,82,204,.05) 0%,transparent 60%);animation:bgOrbit 30s linear infinite;pointer-events:none;z-index:0;}
+        header { background:var(--accent); border-bottom:1px solid var(--border-color); padding:1.2rem 2rem; position:sticky; top:0; z-index:100; animation:slideInDown .6s ease; }
+        .header-container { max-width:1400px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+        .logo { display:flex; align-items:center; gap:.8rem; font-size:20px; font-weight:800; color:var(--primary); }
+        .logo-circle { width:45px; height:45px; background:linear-gradient(135deg,var(--primary) 0%,#0052D4 100%); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:22px; }
+        nav { display:flex; gap:2.5rem; align-items:center; }
+        .dropdown{position:relative;display:inline-block;}
+        .dropdown-toggle{color:var(--text-gray);text-decoration:none;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;}
+        .dropdown-menu{position:absolute;top:100%;left:0;background:white;min-width:260px;border:1px solid var(--border-color);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.12);padding:12px;display:none;z-index:999;}
+        .dropdown:hover .dropdown-menu{display:block;animation:slideInDown .25s ease;}
+        .dropdown-menu a{display:block;padding:12px 14px;border-radius:10px;color:var(--dark-gray);text-decoration:none;font-size:13px;font-weight:600;}
+        .dropdown-menu a:hover{background:#f5f7fb;color:var(--primary);} 
+        nav a { color:var(--text-gray); text-decoration:none; font-size:13px; font-weight:600; }
+        .hero { background:linear-gradient(135deg,var(--primary) 0%,#0052D4 100%); color:white; padding:6rem 2rem; text-align:center; transform-style:preserve-3d; animation:hero3d 8s ease-in-out infinite, neonGlow 5s ease-in-out infinite; position:relative; z-index:1;}
+        .ticker-bar{background:#0a2458;color:#fff;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);}
+        .ticker-track{display:flex;align-items:center;width:max-content;padding:14px 0;animation:scrollTicker 75s linear infinite;}
+        .ticker-item{display:inline-block;margin:0 40px;font-size:14px;font-weight:600;opacity:.95;}
+        @keyframes scrollTicker{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+        .hero-container { max-width:800px; margin:0 auto; }
+        .hero h1 { font-size:48px; font-weight:800; margin-bottom:1.5rem; }
+        .hero p { font-size:18px; margin-bottom:2.5rem; }
+        .cta-buttons { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; }
+        .btn { padding:12px 28px; border:none; border-radius:6px; font-weight:700; font-size:14px; text-decoration:none; display:inline-block; }
+        .btn-primary { background:white; color:var(--primary); }
+        .btn-secondary { background:transparent; color:white; border:2px solid white; }
+        section { padding:4rem 2rem; margin:0; }
+        .container,.projects-container,.contact-container { max-width:1400px; margin:0 auto; }
+        .section-header { max-width:600px; margin:0 auto 2.2rem auto; }
+        .section-label { font-size:12px; color:var(--primary); font-weight:700; text-transform:uppercase; margin-bottom:.5rem; }
+        .section-title { font-size:40px; font-weight:800; margin-bottom:1rem; }
+        .section-description { font-size:16px; color:var(--text-gray); }
+        #services,.stats-section { background:var(--light-bg); margin:0; }
+        .services-grid,.stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem; }
+        .service-card,.stat-card { background:linear-gradient(135deg,#ffffff 0%,#f8fbff 100%); padding:2rem; border-radius:18px; border:1px solid rgba(0,82,204,.08); transform-style:preserve-3d; transition:transform .35s ease, box-shadow .35s ease; position:relative; overflow:hidden; }
+        .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#0052CC,#4F9DFF,#00C6FF);}
+        #projects .service-card:nth-child(1){background:linear-gradient(135deg,#eef4ff,#ffffff);}
+        #projects .service-card:nth-child(2){background:linear-gradient(135deg,#fff7ed,#ffffff);}
+        #projects .service-card:nth-child(3){background:linear-gradient(135deg,#ecfeff,#ffffff);}
+        #projects .service-card:nth-child(4){background:linear-gradient(135deg,#f5f3ff,#ffffff);}
+        #projects .service-card:nth-child(5){background:linear-gradient(135deg,#f0fdf4,#ffffff);}
+        #projects .service-card:nth-child(6){background:linear-gradient(135deg,#fff1f2,#ffffff);} 
+        .service-card:hover,.stat-card:hover{transform:perspective(1000px) rotateX(5deg) rotateY(-4deg) translateY(-8px);box-shadow:0 18px 35px rgba(0,0,0,.10);}
+        .projects-gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:2.5rem; }
+        .project-showcase { background:var(--light-bg); border-radius:16px; overflow:hidden; border:1px solid var(--border-color); }
+        .project-visual { position:relative; height:320px; overflow:hidden; background:#eef3fb; display:grid; grid-template-columns:2fr 1fr; grid-template-rows:1fr 1fr; gap:10px; padding:14px; align-items:stretch; transform-style:preserve-3d; animation:cardPulse3d 6s ease-in-out infinite; }
+        .project-visual img{width:100%;height:100%;object-fit:cover;object-position:center 8%;display:block;border-radius:12px;background:white;clip-path:inset(6% 0 6% 0 round 12px);} .project-visual img:first-child{grid-row:span 2;}
+        .project-visual::before { content:''; position:absolute; inset:0; background:linear-gradient(45deg,transparent 0%,rgba(255,255,255,0.1) 25%,transparent 50%,rgba(255,255,255,0.05) 75%,transparent 100%); animation:shimmer 3s infinite; }
+        .design-snippets { position:absolute; bottom:0; left:0; right:0; height:80px; background:rgba(255,255,255,.95); display:flex; justify-content:space-around; align-items:center; padding:0 1rem; }
+        .snippet { width:60px; height:60px; border-radius:8px; display:flex; align-items:center; justify-content:center; background:white; border:1px solid var(--border-color); animation:float 3s ease-in-out infinite; }
+        .project-info { padding:2rem; }
+        .project-mini-ticker{margin-top:14px;overflow:hidden;white-space:nowrap;background:#fff;border:1px solid var(--border-color);border-radius:10px;padding:8px 0;}
+        .project-mini-track{display:inline-flex;gap:28px;animation:miniTicker 30s linear infinite;width:max-content;padding-left:100%;}
+        .project-mini-item{font-size:12px;font-weight:700;color:#0052CC;opacity:.9;}
+        @keyframes miniTicker{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+        .tag { font-size:10px; padding:5px 12px; background:rgba(0,82,204,.08); color:var(--primary); border-radius:16px; display:inline-block; margin-right:.4rem; margin-top:.4rem; }
+        #contact { background:linear-gradient(135deg,var(--primary) 0%,#0052D4 100%); color:white; text-align:center; }
+        .contact-info { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem; margin:2rem 0; align-items:stretch; }
+        .contact-item { background:rgba(255,255,255,.1); padding:1.5rem; border-radius:12px; min-height:140px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; } .contact-item a{color:white;text-decoration:none;word-break:break-word;display:inline-block;margin-top:6px;} .contact-item a:hover{text-decoration:underline;} .social-link-card{position:relative;overflow:hidden;transition:transform .3s ease, box-shadow .3s ease;} .social-link-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 12px 28px rgba(0,0,0,.18);} .social-link-card a{font-weight:600;font-size:14px;} .social-link-card::after{content:'↗';position:absolute;top:14px;right:16px;font-size:18px;opacity:.8;}
+        footer { background:#0a2458; color:rgba(255,255,255,.7); padding:2rem; text-align:center; }
+        .mobile-menu-toggle{display:none;background:none;border:none;font-size:28px;color:var(--primary);cursor:pointer;}
+        @media (max-width: 768px){
+          header{padding:1rem;}
+          .header-container{flex-wrap:wrap;gap:1rem;}
+          .mobile-menu-toggle{display:block;}
+          nav{display:none;flex-direction:column;width:100%;gap:1rem;padding-top:1rem;border-top:1px solid var(--border-color);}
+          nav.mobile-open{display:flex;}
+          .dropdown{width:100%;}
+          .dropdown-menu{position:static;display:block;box-shadow:none;border:none;padding:8px 0;margin-top:8px;min-width:auto;background:#f8fbff;}
+          .hero{padding:4rem 1rem;}
+          .hero h1{font-size:32px;line-height:1.2;}
+          .hero p{font-size:16px;}
+          .section-title{font-size:28px;}
+          section{padding:3rem 1rem;}
+          .services-grid,.stats-grid{grid-template-columns:1fr;gap:1.25rem;}
+          .contact-info{grid-template-columns:1fr;}
+          .cta-buttons{flex-direction:column;align-items:stretch;}
+          .btn{width:100%;text-align:center;}
+          .ticker-item{margin:0 20px;font-size:12px;}
+          .modal-content{grid-template-columns:1fr;max-height:90vh;overflow:auto;}
+          .slider-wrap img{height:260px;}
+          .modal-info{padding:20px;}
+          .project-showcase:hover,.service-card:hover,.stat-card:hover{transform:none;}
+          body::before{display:none;}
+        }
+        .project-showcase{cursor:pointer;transition:transform .5s ease, box-shadow .5s ease;transform-style:preserve-3d;animation:deepFloat 10s ease-in-out infinite, neonGlow 4s ease-in-out infinite;}
+        .project-showcase:hover{transform:perspective(1800px) rotateX(12deg) rotateY(-12deg) translateY(-18px) translateZ(40px) scale(1.04);box-shadow:0 35px 70px rgba(0,0,0,.22);z-index:5;} 
+        .modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;z-index:9999;padding:24px;}
+        .modal.active{display:flex;}
+        .modal-content{background:#fff;border-radius:20px;max-width:1000px;width:100%;overflow:hidden;display:grid;grid-template-columns:1.4fr 1fr;min-height:520px;}
+        .slider-wrap{position:relative;background:#111;display:flex;align-items:center;justify-content:center;}
+        .slider-wrap img{width:100%;height:520px;object-fit:contain;background:#111;}
+        .slide-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.9);border:none;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:20px;font-weight:bold;}
+        .prev{left:16px}.next{right:16px}
+        .modal-info{padding:32px;overflow:auto;}
+        .close-modal{float:right;border:none;background:none;font-size:28px;cursor:pointer;line-height:1;}
+        .dots{display:flex;gap:8px;justify-content:center;padding:14px;background:#111;}
+        .dot{width:10px;height:10px;border-radius:50%;background:#777;cursor:pointer}.dot.active{background:#fff;}
+    </style>
+</head>
+<body>
+<header><div class="header-container"><div class="logo"><div class="logo-circle">E</div><div>EMZY SOLUTIONS</div></div><button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button><nav id="mainNav"><a href="#services">Services</a><div class="dropdown"><span class="dropdown-toggle">Solutions ▾</span><div class="dropdown-menu"><a href="#projects">Enterprise Business Apps</a><a href="#projects">E-Commerce Platforms</a><a href="#projects">Government Utility Apps</a><a href="#projects">Travel & Booking Apps</a><a href="#projects">Analytics Dashboards</a><a href="#projects">Custom Startup Products</a><a href="#projects">Healthcare Apps</a><a href="#projects">Fintech Solutions</a><a href="#projects">EdTech Platforms</a><a href="#projects">Logistics Apps</a><a href="#projects">On-Demand Delivery Apps</a><a href="#projects">CRM / SaaS Products</a></div></div><a href="#about">About</a><a href="#contact">Contact</a></nav></div></header>
+<section class="hero"><div class="hero-container"><div class="section-label" style="color:#dbe7ff;letter-spacing:3px;">MOHAMMED ZEESHAN PRESENTS</div><h1>Innovative Mobile Apps That Transform Businesses</h1><p>Crafting high-performance Android & iOS applications with stunning designs and seamless user experiences. From concept to production, we deliver excellence.</p><div class="cta-buttons"><a href="#contact" class="btn btn-primary">Start Your Project</a><a href="#projects" class="btn btn-secondary">Explore Solutions</a></div></div></section>
+<div class="ticker-bar"><div class="ticker-track" id="tickerTrack">
+<span class="ticker-item">🚀 150+ Apps Delivered Across Industries</span>
+<span class="ticker-item">⭐ 98% Client Satisfaction Rate</span>
+<span class="ticker-item">💧 Water Utility Platform Serving Real Citizens</span>
+<span class="ticker-item">🏪 Enterprise Store Procurement Systems</span>
+<span class="ticker-item">🚗 EV Marketplace with Insurance & EMI Integration</span>
+<span class="ticker-item">✈ Aviation Dashboards with Live Airport Analytics</span>
+<span class="ticker-item">🌍 Travel Apps with Interactive Booking Experiences</span>
+<span class="ticker-item">🚀 150+ Apps Delivered Across Industries</span>
+<span class="ticker-item">⭐ 98% Client Satisfaction Rate</span>
+<span class="ticker-item">💧 Water Utility Platform Serving Real Citizens</span>
+<span class="ticker-item">🏪 Enterprise Store Procurement Systems</span>
+<span class="ticker-item">🚗 EV Marketplace with Insurance & EMI Integration</span>
+<span class="ticker-item">✈ Aviation Dashboards with Live Airport Analytics</span>
+<span class="ticker-item">🌍 Travel Apps with Interactive Booking Experiences</span>
+</div></div>
+<section id="services"><div class="container"><div class="section-header" style="text-align:center;max-width:none;"><h2 class="section-title">Our Services</h2><p class="section-description">End-to-end mobile app development solutions tailored to your business needs</p></div><div class="services-grid"><div class="service-card"><div style='font-size:42px;margin-bottom:14px;'>📱</div><h3>Android Development</h3><p>Native Android applications with Kotlin & Java clean architecture.</p><div style='margin:12px 0;color:#555;font-size:14px;'>✔ Fast Delivery<br>✔ Play Store Ready<br>✔ Scalable Code</div><span class="tag">Kotlin</span><span class="tag">Material UI</span><div style='margin-top:18px;'><button class='btn btn-primary' onclick="openExternal('#contact')">Get Quote</button></div></div><div class="service-card"><div style='font-size:42px;margin-bottom:14px;'>🍎</div><h3>iOS Development</h3><p>Premium iOS applications optimized for Apple devices.</p><div style='margin:12px 0;color:#555;font-size:14px;'>✔ App Store Ready<br>✔ Swift Optimized<br>✔ Premium UX</div><span class="tag">Swift</span><span class="tag">App Store Ready</span><div style='margin-top:18px;'><button class='btn btn-primary' onclick="openExternal('#contact')">Get Quote</button></div></div><div class="service-card"><div style='font-size:42px;margin-bottom:14px;'>🎨</div><h3>UI/UX Design</h3><p>User-centered design with Figma wireframes and prototypes.</p><div style='margin:12px 0;color:#555;font-size:14px;'>✔ Research Driven<br>✔ Wireframes<br>✔ Interactive Prototypes</div><span class="tag">Figma</span><span class="tag">Research</span><div style='margin-top:18px;'><button class='btn btn-primary' onclick="openExternal('#contact')">Get Quote</button></div></div><div class="service-card"><div style='font-size:42px;margin-bottom:14px;'>🔗</div><h3>API Integration</h3><p>Payment gateways, maps, analytics, and backend APIs.</p><div style='margin:12px 0;color:#555;font-size:14px;'>✔ Secure APIs<br>✔ Real-time Data<br>✔ Payment Ready</div><span class="tag">REST</span><span class="tag">GraphQL</span><div style='margin-top:18px;'><button class='btn btn-primary' onclick="openExternal('#contact')">Get Quote</button></div></div><div class="service-card"><div style='font-size:42px;margin-bottom:14px;'>⚡</div><h3>Cross-Platform Apps</h3><p>Flutter & React Native apps for Android and iOS.</p><div style='margin:12px 0;color:#555;font-size:14px;'>✔ One Codebase<br>✔ Faster Launch<br>✔ Cost Effective</div><span class="tag">Flutter</span><span class="tag">React Native</span><div style='margin-top:18px;'><button class='btn btn-primary' onclick="openExternal('#contact')">Get Quote</button></div></div><div class="service-card"><div style='font-size:42px;margin-bottom:14px;'>🛠</div><h3>App Maintenance</h3><p>Ongoing support, updates, bug fixes, and performance tuning.</p><div style='margin:12px 0;color:#555;font-size:14px;'>✔ 24/7 Support<br>✔ Bug Fixes<br>✔ Version Updates</div><span class="tag">24/7 Support</span><span class="tag">Updates</span><div style='margin-top:18px;'><button class='btn btn-primary' onclick="openExternal('#contact')">Get Quote</button></div></div></div></div></section>
+<section id="projects" class="stats-section" style="padding-top:2.5rem; margin-top:0;"><div class="projects-container"><div class="section-header" style="text-align:center;max-width:none;"><h2 class="section-title">Specialized Solutions We Build</h2><p class="section-description">Comprehensive digital products crafted for different industries and business models</p></div><div class="services-grid"><div class="service-card"><h3>Enterprise Business Apps</h3><p>Custom enterprise-grade platforms for operations, procurement, HR, workflow automation, and internal management systems.</p><span class="tag">ERP Systems</span><span class="tag">Admin Dashboards</span></div><div class="service-card"><h3>E-Commerce Platforms</h3><p>Scalable online marketplaces, shopping apps, EV commerce apps, booking engines, and payment-integrated platforms.</p><span class="tag">Payments</span><span class="tag">Marketplaces</span></div><div class="service-card"><h3>Government Utility Apps</h3><p>Citizen service applications for utilities, billing, complaint tracking, smart metering, and public service management.</p><span class="tag">Utilities</span><span class="tag">Citizen Services</span></div><div class="service-card"><h3>Travel & Booking Apps</h3><p>Trip planning, hotel booking, itinerary systems, destination guides, and tourism mobile experiences.</p><span class="tag">Travel Tech</span><span class="tag">Booking Systems</span></div><div class="service-card"><h3>Analytics Dashboards</h3><p>Real-time monitoring dashboards for aviation, logistics, operations intelligence, and KPI visualization systems.</p><span class="tag">Real-time Data</span><span class="tag">BI Dashboards</span></div><div class="service-card"><h3>Custom Startup Products</h3><p>MVP development for startups including SaaS apps, marketplaces, fintech tools, and scalable mobile-first products.</p><span class="tag">MVP Build</span><span class="tag">Scalable Apps</span></div></div></div></section>
+<section class="stats-section"><div class="container"><div class="section-header" style="text-align:center;max-width:none;"><h2 class="section-title">Our Development Process</h2><p class="section-description">A proven workflow that ensures quality, speed, and scalable delivery</p></div><div class="services-grid"><div class="service-card"><div style='font-size:42px;margin-bottom:14px;'>📝</div><h3>1. Discovery</h3><p>We understand your goals, business requirements, and define project scope clearly.</p></div><div class="service-card"><div style='font-size:42px;margin-bottom:14px;'>🎨</div><h3>2. Design</h3><p>Wireframes, UI/UX prototypes, and interactive product experience planning.</p></div><div class="service-card"><div style='font-size:42px;margin-bottom:14px;'>💻</div><h3>3. Development</h3><p>Robust coding with scalable architecture using modern frameworks and APIs.</p></div><div class="service-card"><div style='font-size:42px;margin-bottom:14px;'>🧪</div><h3>4. Testing</h3><p>Comprehensive QA testing for performance, bugs, security, and usability.</p></div><div class="service-card"><div style='font-size:42px;margin-bottom:14px;'>🚀</div><h3>5. Launch</h3><p>Deployment to Play Store / App Store with production rollout support.</p></div><div class="service-card"><div style='font-size:42px;margin-bottom:14px;'>🔄</div><h3>6. Support</h3><p>Continuous maintenance, upgrades, monitoring, and feature improvements.</p></div></div></div></section><section class="stats-section"><div class="container"><div class="section-header" style="text-align:center;max-width:none;"><h2 class="section-title">Technology Stack</h2><p class="section-description">Modern technologies powering scalable mobile and web applications</p></div><div class="services-grid"><div class="service-card"><h3>Frontend</h3><p><span class='tag'>Flutter</span><span class='tag'>Dart</span><span class='tag'>React Native</span><span class='tag'>Swift</span></p></div><div class="service-card"><h3>Backend</h3><p><span class='tag'>Node.js</span><span class='tag'>Firebase</span><span class='tag'>REST API</span><span class='tag'>GraphQL</span></p></div><div class="service-card"><h3>Database</h3><p><span class='tag'>Hive</span><span class='tag'>SQLite</span><span class='tag'>Firestore</span><span class='tag'>MySQL</span></p></div><div class="service-card"><h3>Design Tools</h3><p><span class='tag'>Figma</span><span class='tag'>Adobe XD</span><span class='tag'>UI Prototyping</span></p></div></div></div></section><section class="stats-section"><div class="container"><div class="section-header" style="text-align:center;max-width:none;"><h2 class="section-title">Client Testimonials</h2><p class="section-description">What clients say about working with EMZY Solutions</p></div><div class="services-grid"><div class="service-card"><p>“Excellent Flutter development with outstanding delivery quality and communication.”</p><h3 style='margin-top:16px;'>— Startup Founder</h3></div><div class="service-card"><p>“Professional execution from concept to launch. Highly recommended for enterprise apps.”</p><h3 style='margin-top:16px;'>— Business Client</h3></div><div class="service-card"><p>“Fast turnaround, clean code, and beautiful UI design exceeded expectations.”</p><h3 style='margin-top:16px;'>— Product Manager</h3></div></div></div></section><section id="about"><div class="container"><div class="section-header" style="text-align:center;max-width:none;"><h2 class="section-title">About EMZY Solutions</h2><p class="section-description">Transforming ideas into powerful mobile applications</p></div><div style="max-width:900px;margin:0 auto;text-align:center;color:#666;line-height:2;">EMZY Solutions is founded by <strong style='color:#0052CC'>Mohammed Zeeshan</strong>, a passionate mobile app developer dedicated to creating exceptional digital experiences. We specialize in crafting scalable, user-focused mobile applications that combine performance, elegant design, and business impact for startups and enterprises alike.</div><div class="stats-grid" style="margin-top:3rem;"><div class="stat-card"><h3 class="section-title" style="font-size:48px;color:#0052CC">Flutter</h3><p>Core Expertise Platform</p></div><div class="stat-card"><h3 class="section-title" style="font-size:48px;color:#0052CC">24/7</h3><p>Development & Support Availability</p></div></div></div></section>
+<section class="stats-section"><div class="container"><div class="section-header" style="text-align:center;max-width:none;"><h2 class="section-title">Why Choose EMZY Solutions?</h2></div><div class="services-grid"><div class="service-card"><h3>Proven Track Record</h3><p>Real apps deployed on Play Store with active users.</p></div><div class="service-card"><h3>Quality Code</h3><p>Clean, scalable, maintainable architecture.</p></div><div class="service-card"><h3>Fast Delivery</h3><p>Efficient development with reliable timelines.</p></div><div class="service-card"><h3>Creative Design</h3><p>Beautiful intuitive interfaces users love.</p></div><div class="service-card"><h3>Free Consultation</h3><p>Initial consultation to understand your vision.</p></div><div class="service-card"><h3>24/7 Support</h3><p>Continuous support and maintenance.</p></div></div></div></section>
+<section id="contact"><div class="contact-container"><h2>Ready to Build Your Next App?</h2><p>Let's discuss how we can transform your idea into a powerful, user-friendly mobile application that drives business growth.</p><div class="contact-info"><div class="contact-item">📞<br><strong>PHONE</strong><br>+91 8465848501</div><div class="contact-item">📧<br><strong>EMAIL</strong><br>emzysolutions@gmail.com</div><div class="contact-item">📍<br><strong>LOCATION</strong><br>Hyderabad, India</div></div><div class="cta-buttons social-links-row" style="justify-content:center;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:2rem;"><button class="btn btn-primary" onclick="openExternal('mailto:emzysolutions@gmail.com')">Send Email</button><button class="btn btn-primary" onclick="openExternal('tel:+918465848501')">Call Now</button><button class="btn btn-primary" onclick="openExternal('https://www.linkedin.com/in/mohammed-zeeshan-99855b388/')">LinkedIn</button><button class="btn btn-primary" onclick="openExternal('https://github.com/Emzyzeeshan')">GitHub</button></div></div></section>
+<footer>© 2026 EMZY SOLUTIONS | Building exceptional mobile apps | Founder: <strong>Mohammed Zeeshan</strong></footer>
+<div class="modal" id="projectModal">
+  <div class="modal-content">
+    <div>
+      <div class="slider-wrap">
+        <button class="slide-btn prev" onclick="changeSlide(-1)">‹</button>
+        <img id="modalImage" src="" alt="Project Image">
+        <button class="slide-btn next" onclick="changeSlide(1)">›</button>
+      </div>
+      <div class="dots" id="dots"></div>
+    </div>
+    <div class="modal-info">
+      <button class="close-modal" onclick="closeModal()">×</button>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc" style="margin-top:16px;color:#666;line-height:1.8"></p><div id="modalMeta" style="margin-top:18px;font-weight:600;color:#0052CC"></div><ul id="modalFeatures" style="margin-top:20px;padding-left:20px;color:#444;line-height:1.9"></ul>
+    </div>
+  </div>
+</div>
+<script>
+const projectDetails=[];
+const projects=[];
+let currentProject=0,currentSlide=0;
+document.querySelectorAll('.project-showcase').forEach((card,i)=>card.addEventListener('click',()=>openModal(i)));
+function openModal(i){currentProject=i;currentSlide=0;document.getElementById('projectModal').classList.add('active');renderModal();}
+function closeModal(){document.getElementById('projectModal').classList.remove('active');}
+function changeSlide(dir){const p=projects[currentProject];currentSlide=(currentSlide+dir+p.images.length)%p.images.length;renderModalImage();}
+function goToSlide(i){currentSlide=i;renderModalImage();}
+function renderModal(){const p=projects[currentProject];document.getElementById('modalTitle').innerText=p.title;document.getElementById('modalDesc').innerText=p.desc;document.getElementById('modalMeta').innerText=p.meta;document.getElementById('modalFeatures').innerHTML=p.features.map(f=>`<li>${f}</li>`).join('');renderModalImage();}
+function renderModalImage(){const p=projects[currentProject];document.getElementById('modalImage').src=p.images[currentSlide];const dots=document.getElementById('dots');dots.innerHTML=p.images.map((_,i)=>`<div class='dot ${i===currentSlide?'active':''}' onclick='goToSlide(${i})'></div>`).join('');}
+window.addEventListener('click',e=>{if(e.target.id==='projectModal')closeModal();});
+function toggleMobileMenu(){document.getElementById('mainNav').classList.toggle('mobile-open');}
+function openExternal(url){
+ try{
+   const win = window.open(url,'_blank','noopener,noreferrer');
+   if(!win){ window.location.href = url; }
+ }catch(e){ window.location.href = url; }
+}
+</script>
+</body>
+</html>
